@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Akka.Actor;
 
@@ -11,7 +12,7 @@ namespace Coordinator
     {
         private readonly ConcurrentDictionary<Object, IActorRef> _agentCache = new ConcurrentDictionary<Object, IActorRef>();
         private readonly ConcurrentDictionary<FoodNameTerms, DocumentScore> _sourceScores = new ConcurrentDictionary<FoodNameTerms, DocumentScore>();
-        private IReadOnlyCollection<String> _foodNames;
+        private IReadOnlyCollection<String> _foodNames = new [] { "barbecue sauce, smoky", "barbecue sauce, mesquite", "chilli sauce", "ice cream, mint, chocolate, cookie" };
 
         public FoodNameClusteringCoordinator()
         {
@@ -40,90 +41,96 @@ namespace Coordinator
             Receive<StoreMetricsFailedMessage>(m => handle(m));
         }
 
-        private Task handle(StoreMetricsFailedMessage message)
+        private void handle(StoreMetricsFailedMessage message)
         {
-            throw new NotImplementedException();
         }
 
-        private Task handle(StoreMetricsResultMessage message)
+        private void handle(StoreMetricsResultMessage message)
         {
-            throw new NotImplementedException();
         }
 
-        private Task handle(StoreMetricsRequestMessage message)
+        private void handle(StoreMetricsRequestMessage message)
         {
-            throw new NotImplementedException();
+            var child = getChildActor(null, () => new StoreMetricsActor());
+            child.Tell(message);
         }
 
         private void handle(CompareDocumentsFailedMessage message)
         {
-            throw new NotImplementedException();
         }
 
         private void handle(CompareDocumentsResultMessage message)
         {
-            Sender.Tell(new StoreMetricsRequestMessage(message.Comparison));
+            Self.Tell(new StoreMetricsRequestMessage(message.Comparison));
         }
 
         private void handle(CompareDocumentsRequestMessage message)
         {
-            throw new NotImplementedException();
+            var child = getChildActor(null, () => new FoodNameDocumentScoreComparisonActor());
+            child.Tell(message);
         }
 
         private void handle(ScoreDocumentFailedMessage message)
         {
-            throw new NotImplementedException();
         }
 
         private void handle(ScoreDocumentResultMessage message)
         {
             DocumentScore sourceScore;
 
+            if (message.IsSourceScore)
+            {
+                _sourceScores.TryAdd(message.Request.SourceFoodTerms, message.Score);
+                return;
+            }
+
             if (_sourceScores.TryGetValue(message.Request.SourceFoodTerms, out sourceScore))
             {
-                Sender.Tell(new CompareDocumentsRequestMessage(sourceScore, message.Score));
+                Self.Tell(new CompareDocumentsRequestMessage(sourceScore, message.Score));
             }
             else
             {
-                // Retry later
+                // Retry later if the document isn't present
                 Task.Run(async () =>
                 {
                     await Task.Delay(TimeSpan.FromSeconds(10));
-                    Sender.Tell(message);
+                    Self.Tell(message);
                 });
             }
         }
 
         private void handle(ScoreDocumentRequestMessage message)
         {
-            throw new NotImplementedException();
+            var key = Tuple.Create(nameof(DocumentScoringActor), message.Document.DocumentUri);
+            var child = getChildActor(key, () => new DocumentScoringActor());
+            child.Tell(message);
         }
 
         private void handle(RetrieveDocumentFailedMessage message)
         {
-            throw new NotImplementedException();
         }
 
         private void handle(RetrieveDocumentResultMessage message)
         {
             var foodNameQuery = message.Request.FoodNameQuery;
             var foodNameTerms = new FoodNameTerms(foodNameQuery);
-            Sender.Tell(new ScoreDocumentRequestMessage(message.SearchResultDoc, foodNameTerms, foodNameTerms));
+            Self.Tell(new ScoreDocumentRequestMessage(message.SearchResultDoc, foodNameTerms, foodNameTerms));
 
             foreach (var foodName in _foodNames.Where(n => !n.Equals(foodNameQuery)))
             {
-                Sender.Tell(new ScoreDocumentRequestMessage(message.SearchResultDoc, new FoodNameTerms(foodName), foodNameTerms));
+                Self.Tell(new ScoreDocumentRequestMessage(message.SearchResultDoc, new FoodNameTerms(foodName), foodNameTerms));
             }
         }
 
         private void handle(RetrieveDocumentRequestMessage message)
         {
-            throw new NotImplementedException();
+            var key = Tuple.Create(nameof(DocumentRetrievalActor), message.DocumentUri);
+            var child = getChildActor(key, () => new DocumentRetrievalActor());
+            child.Tell(message);
         }
 
         private void handle(SearchResultsParseFailedMessage message)
         {
-            throw new NotImplementedException();
         }
 
         private void handle(SearchResultsParseResultMessage message)
@@ -134,21 +141,24 @@ namespace Coordinator
 
             foreach (var doc in message.Documents)
             {
-                Sender.Tell(new RetrieveDocumentRequestMessage(doc, TimeSpan.FromMinutes(2), searchUri, originatingFoodName));
+                Self.Tell(new RetrieveDocumentRequestMessage(doc, TimeSpan.FromMinutes(2), searchUri, originatingFoodName));
             }
         }
 
         private void handle(SearchResultsParseRequestMessage message)
         {
-            throw new NotImplementedException();
+            var searchHost = message.SearchResults.SourceUri.Host;
+            var key = Tuple.Create(nameof(SearchResultsParseActor), searchHost.ToLowerInvariant());
+            var resultsParserImpl = createResultsParser(searchHost);
+            var child = getChildActor(key, () => new SearchResultsParseActor(resultsParserImpl));
+            child.Tell(message);
         }
 
         private void handle(FoodSearchResultMessage message)
         {
-            Sender.Tell(new SearchResultsParseRequestMessage
-            {
-                SearchResults = new SearchResults(message.Request.SearchUri, message.Request.FoodName, message.HtmlResult)
-            });
+            var searchResults = new SearchResults(message.Request.SearchUri, message.Request.FoodName, message.HtmlResult);
+            var request = new SearchResultsParseRequestMessage(searchResults);
+            Self.Tell(request);
         }
 
         private void handle(FoodSearchFailedMessage failure)
@@ -157,17 +167,44 @@ namespace Coordinator
 
         private void handle(FoodSearchRequestMessage message)
         {
-            var host = message.SearchUri.Host.ToLowerInvariant();
+            var key = Tuple.Create(nameof(FoodNameSearchActor), message.SearchUri.Host.ToLowerInvariant());
+            var child = getChildActor(key, () => new FoodNameSearchActor());
+            child.Tell(message);
+        }
+
+        private IActorRef getChildActor<TActor>(Object key, Expression<Func<TActor>> agentFactory)
+            where TActor : ActorBase
+        {
             IActorRef child;
 
-            if (!_agentCache.TryGetValue(host, out child))
+            if (_agentCache.TryGetValue(key, out child))
             {
-                child = Context.ActorOf(Props.Create(() => new FoodNameSearchActor()));
-                //.WithRouter(new RoundRobinPool(1, new DefaultResizer(0, 10))));
-                _agentCache.TryAdd(host, child);
+                return child;
             }
 
-            child.Tell(message, Sender);
+            child = Context.ActorOf(Props.Create(agentFactory));
+            //.WithRouter(new RoundRobinPool(1, new DefaultResizer(0, 10))));
+
+            if (key != null)
+            {
+                _agentCache.TryAdd(key, child);
+            }
+
+            return child;
+        }
+
+        private ISearchResultsParser createResultsParser(String searchEngineName)
+        {
+            searchEngineName = searchEngineName.ToLowerInvariant();
+
+            switch (searchEngineName)
+            {
+                case "www.bing.com":
+                case "bing.com":
+                    return new BingSearchResultsParser();
+                default:
+                    throw new ArgumentOutOfRangeException("Unkown search engine host");
+            }
         }
     }
 }

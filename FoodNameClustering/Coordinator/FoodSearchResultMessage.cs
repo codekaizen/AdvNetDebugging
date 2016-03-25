@@ -6,6 +6,14 @@ namespace Coordinator
     {
         public FoodSearchResultMessage(FoodSearchRequestMessage request, String htmlResult)
         {
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+            if (htmlResult == null)
+            {
+                throw new ArgumentNullException(nameof(htmlResult));
+            }
             Request = request;
             HtmlResult = htmlResult;
         }

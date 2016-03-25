@@ -24,9 +24,22 @@ namespace Coordinator
             });
         }
 
-        private async Task<ScoresDistance> compareScoresAsync(DocumentScore source, DocumentScore target)
+        private static async Task<ScoresDistance> compareScoresAsync(DocumentScore source, DocumentScore target)
         {
-            throw new NotImplementedException();
+            return await Task.Run(() =>
+            {
+                Double sumSquares = 0;
+                var sourceScores = source.ScoreVector;
+                var targetScores = target.ScoreVector;
+
+                for (var j = 0; j < sourceScores.Length; j++)
+                {
+                    var residual = sourceScores[j] - targetScores[j];
+                    sumSquares += residual*residual;
+                }
+
+                return new ScoresDistance(source, target, Math.Sqrt(sumSquares));
+            });
         }
     }
 }

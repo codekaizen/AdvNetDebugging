@@ -12,9 +12,9 @@ namespace Coordinator
             FoodNameQuery = foodNameQuery;
         }
 
-        public Uri DocumentUri { get; set; }
-        public TimeSpan Timeout { get; set; }
-        public Uri SearchUri { get; set; }
-        public String FoodNameQuery { get; set; }
+        public Uri DocumentUri { get; }
+        public TimeSpan Timeout { get; }
+        public Uri SearchUri { get; }
+        public String FoodNameQuery { get; }
     }
 }

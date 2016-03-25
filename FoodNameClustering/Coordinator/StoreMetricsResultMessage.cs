@@ -6,7 +6,6 @@ namespace Coordinator
     {
         public StoreMetricsResultMessage(StoreMetricsRequestMessage request)
         {
-            throw new NotImplementedException();
         }
     }
 }

@@ -2,6 +2,11 @@ namespace Coordinator
 {
     public class SearchResultsParseRequestMessage
     {
-        public SearchResults SearchResults { get; set; }
+        public SearchResultsParseRequestMessage(SearchResults searchResults)
+        {
+            SearchResults = searchResults;
+        }
+
+        public SearchResults SearchResults { get; }
     }
 }
