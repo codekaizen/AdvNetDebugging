@@ -7,12 +7,20 @@ namespace Coordinator
     {
         static void Main(string[] args)
         {
-            var system = ActorSystem.Create("Cluster Food Names");
+            var system = ActorSystem.Create("ClusterFoodNames");
 
             try
             {
                 var coordinator = system.ActorOf<FoodNameClusteringCoordinator>("coord");
-                coordinator.Tell(new FoodSearchRequestMessage { SearchUri  = new Uri("http://www.bing.com") });
+                var searchEngine = new AbstractSearchEngine(new BingSearchEngineImpl());
+
+                var foodName = "barbecue sauce, smokey";
+                coordinator.Tell(new FoodSearchRequestMessage
+                {
+                    SearchUri = searchEngine.CreateQuery(foodName),
+                    FoodName = foodName,
+                    TimeOut = TimeSpan.FromMinutes(2)
+                });
                 Console.ReadLine();
             }
             finally
