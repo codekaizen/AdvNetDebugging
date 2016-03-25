@@ -255,16 +255,16 @@ namespace LemmaSharp {
         }
         private void SerializeLZMA(Stream streamOut, bool bSerializeExamples) {
             CoderPropID[] propIDs = 
-				{
-					CoderPropID.DictionarySize,
-					CoderPropID.PosStateBits,
-					CoderPropID.LitContextBits,
-					CoderPropID.LitPosBits,
-					CoderPropID.Algorithm,
-					CoderPropID.NumFastBytes,
-					CoderPropID.MatchFinder,
-					CoderPropID.EndMarker
-				};
+                {
+                    CoderPropID.DictionarySize,
+                    CoderPropID.PosStateBits,
+                    CoderPropID.LitContextBits,
+                    CoderPropID.LitPosBits,
+                    CoderPropID.Algorithm,
+                    CoderPropID.NumFastBytes,
+                    CoderPropID.MatchFinder,
+                    CoderPropID.EndMarker
+                };
 
             Int32 dictionary = 1 << 23;
             Int32 posStateBits = 2;
@@ -278,16 +278,16 @@ namespace LemmaSharp {
             bool eos = false;
 
             object[] properties = 
-				{
-					(Int32)(dictionary),
-					(Int32)(posStateBits),
-					(Int32)(litContextBits),
-					(Int32)(litPosBits),
-					(Int32)(algorithm),
-					(Int32)(numFastBytes),
-					mf,
-					eos
-				};
+                {
+                    (Int32)(dictionary),
+                    (Int32)(posStateBits),
+                    (Int32)(litContextBits),
+                    (Int32)(litPosBits),
+                    (Int32)(algorithm),
+                    (Int32)(numFastBytes),
+                    mf,
+                    eos
+                };
 
             MemoryStream msTemp = new MemoryStream();
             BinaryWriter binWrtTemp = new BinaryWriter(msTemp);

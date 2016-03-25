@@ -37,10 +37,6 @@
       <HintPath>..\packages\Akka.1.0.6\lib\net45\Akka.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LemmaSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LemmaSharp.1.0.0.0\lib\net20\LemmaSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="LemmaSharp.Prebuilt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LemmaSharp.Prebuilt.1.0.0.0\lib\net20\LemmaSharp.Prebuilt.dll</HintPath>
       <Private>True</Private>
@@ -63,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractSearchEngine.cs" />
+    <Compile Include="BingSearchEngineImpl.cs" />
     <Compile Include="CompareDocumentsFailedMessage.cs" />
     <Compile Include="CompareDocumentsRequestMessage.cs" />
     <Compile Include="CompareDocumentsResultMessage.cs" />
@@ -80,6 +78,7 @@
     <Compile Include="FoodSearchRequestMessage.cs" />
     <Compile Include="FoodSearchResultMessage.cs" />
     <Compile Include="HttpClientReceiveActor.cs" />
+    <Compile Include="ISearchEngineImpl.cs" />
     <Compile Include="ISearchResultsParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +96,10 @@
     <Compile Include="SearchResultsParseFailedMessage.cs" />
     <Compile Include="SearchResultsParseRequestMessage.cs" />
     <Compile Include="SearchResultsParseResultMessage.cs" />
+    <Compile Include="StoreMetricsActor.cs" />
+    <Compile Include="StoreMetricsFailedMessage.cs" />
+    <Compile Include="StoreMetricsRequestMessage.cs" />
+    <Compile Include="StoreMetricsResultMessage.cs" />
     <Compile Include="VectorBase.cs" />
   </ItemGroup>
   <ItemGroup>

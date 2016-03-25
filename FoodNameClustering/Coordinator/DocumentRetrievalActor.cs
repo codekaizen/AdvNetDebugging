@@ -16,7 +16,7 @@ namespace Coordinator
                     var response = await DoHttpRequestAsync(request, r.Timeout);
                     var htmlResult = await response.Content.ReadAsStringAsync();
                     var documentVector = vectorizeDocument(htmlResult);
-                    var searchResultDoc = new SearchResultDocument(r.SearchUri, r.OriginatingFoodName, r.DocumentUri, documentVector);
+                    var searchResultDoc = new SearchResultDocument(r.SearchUri, r.FoodNameQuery, r.DocumentUri, documentVector);
                     Sender.Tell(new RetrieveDocumentResultMessage(r, searchResultDoc));
                 }
                 catch (Exception exp)

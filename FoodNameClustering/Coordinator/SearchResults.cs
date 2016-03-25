@@ -14,5 +14,6 @@ namespace Coordinator
         public Uri SourceUri { get; }
         public String FoodName { get; }
         public String HtmlContent { get; }
+        public FoodNameTerms SourceFoodName { get; private set; }
     }
 }
