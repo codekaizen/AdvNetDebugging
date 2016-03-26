@@ -2,7 +2,7 @@
 using Akka.Actor;
 using Akka.Configuration;
 
-namespace Coordinator
+namespace Esha.Analysis.FoodClusteringAgents.TestDriver
 {
     class Program
     {
