@@ -1,7 +1,9 @@
 using System;
+using System.Diagnostics;
 
 namespace Coordinator
 {
+    [DebuggerDisplay("{FoodNameTerms} {ScoreVector.DebugView} in {Document.DocumentUri}")]
     public class DocumentScore
     {
         public DocumentScore(SearchResultDocument document, FoodNameTerms terms, FoodNameScoreVector foodNameScoreVector)

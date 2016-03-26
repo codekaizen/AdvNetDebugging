@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Coordinator
 {
+    [DebuggerDisplay("{_terms.Count} terms: {ToString()}")]
+    [DebuggerTypeProxy(typeof(DebugProxy))]
     public sealed class FoodNameTerms : IEquatable<FoodNameTerms>
     {
         private static readonly Regex _splitter = new Regex(@"\W", RegexOptions.IgnoreCase);
@@ -17,8 +20,22 @@ namespace Coordinator
                 throw new ArgumentNullException(nameof(foodName));
             }
 
+            FoodName = foodName;
             var splitTerms = _splitter.Split(foodName);
             _terms.UnionWith(splitTerms.Where(t => !String.IsNullOrWhiteSpace(t)).Select(t => t.ToLowerInvariant()));
+        }
+
+        public String FoodName { get; }
+
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>
+        /// A string that represents the current object.
+        /// </returns>
+        public override String ToString()
+        {
+            return _terms.OrderBy(t => t).PrintAsCsv();
         }
 
         public Boolean Contains(String term)
@@ -37,7 +54,7 @@ namespace Coordinator
         /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
         /// </returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(FoodNameTerms other)
+        public Boolean Equals(FoodNameTerms other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -58,7 +75,7 @@ namespace Coordinator
         /// true if the specified object  is equal to the current object; otherwise, false.
         /// </returns>
         /// <param name="obj">The object to compare with the current object. </param>
-        public override bool Equals(object obj)
+        public override Boolean Equals(object obj)
         {
             return Equals(obj as FoodNameTerms);
         }
@@ -69,7 +86,7 @@ namespace Coordinator
         /// <returns>
         /// A hash code for the current object.
         /// </returns>
-        public override int GetHashCode()
+        public override Int32 GetHashCode()
         {
             unchecked
             {
@@ -77,14 +94,28 @@ namespace Coordinator
             }
         }
 
-        public static bool operator ==(FoodNameTerms left, FoodNameTerms right)
+        public static Boolean operator ==(FoodNameTerms left, FoodNameTerms right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(FoodNameTerms left, FoodNameTerms right)
+        public static Boolean operator !=(FoodNameTerms left, FoodNameTerms right)
         {
             return !Equals(left, right);
+        }
+
+        private class DebugProxy
+        {
+            private readonly FoodNameTerms _instance;
+
+            public DebugProxy(FoodNameTerms instance)
+            {
+                Debug.Assert(instance != null);
+                _instance = instance;
+            }
+
+            [DebuggerBrowsable(DebuggerBrowsableState.RootHidden)]
+            public String[] Terms => _instance._terms.ToArray();
         }
     }
 }

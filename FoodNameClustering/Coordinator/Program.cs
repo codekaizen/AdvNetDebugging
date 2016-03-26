@@ -30,7 +30,7 @@ namespace Coordinator
                 var coordinator = system.ActorOf<FoodNameClusteringCoordinator>("coord");
                 var searchEngine = new AbstractSearchEngine(new BingSearchEngineImpl());
 
-                var foodName = "barbecue sauce, smokey";
+                var foodName = "barbecue sauce, smoky";
                 coordinator.Tell(new FoodSearchRequestMessage(searchEngine.CreateQuery(foodName), foodName, TimeSpan.FromMinutes(2)));
 
                 Console.ReadLine();

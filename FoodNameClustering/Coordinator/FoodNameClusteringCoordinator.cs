@@ -5,13 +5,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Akka.Actor;
+using Akka.Routing;
 
 namespace Coordinator
 {
     public class FoodNameClusteringCoordinator : ReceiveActor
     {
         private readonly ConcurrentDictionary<Object, IActorRef> _agentCache = new ConcurrentDictionary<Object, IActorRef>();
-        private readonly ConcurrentDictionary<FoodNameTerms, DocumentScore> _sourceScores = new ConcurrentDictionary<FoodNameTerms, DocumentScore>();
+        private readonly ConcurrentDictionary<Tuple<FoodNameTerms, Uri>, DocumentScore> _sourceScores = new ConcurrentDictionary<Tuple<FoodNameTerms, Uri>, DocumentScore>();
         private IReadOnlyCollection<String> _foodNames = new [] { "barbecue sauce, smoky", "barbecue sauce, mesquite", "chilli sauce", "ice cream, mint, chocolate, cookie" };
 
         public FoodNameClusteringCoordinator()
@@ -51,7 +52,7 @@ namespace Coordinator
 
         private void handle(StoreMetricsRequestMessage message)
         {
-            var child = getChildActor(null, () => new StoreMetricsActor());
+            var child = getChildActor(nameof(StoreMetricsActor), () => new StoreMetricsActor());
             child.Tell(message);
         }
 
@@ -66,7 +67,7 @@ namespace Coordinator
 
         private void handle(CompareDocumentsRequestMessage message)
         {
-            var child = getChildActor(null, () => new FoodNameDocumentScoreComparisonActor());
+            var child = getChildActor(nameof(FoodNameDocumentScoreComparisonActor), () => new FoodNameDocumentScoreComparisonActor());
             child.Tell(message);
         }
 
@@ -78,13 +79,15 @@ namespace Coordinator
         {
             DocumentScore sourceScore;
 
+            var key = Tuple.Create(message.Request.SourceFoodTerms, message.Score.Document.DocumentUri);
+
             if (message.IsSourceScore)
             {
-                _sourceScores.TryAdd(message.Request.SourceFoodTerms, message.Score);
+                _sourceScores.TryAdd(key, message.Score);
                 return;
             }
 
-            if (_sourceScores.TryGetValue(message.Request.SourceFoodTerms, out sourceScore))
+            if (_sourceScores.TryGetValue(key, out sourceScore))
             {
                 Self.Tell(new CompareDocumentsRequestMessage(sourceScore, message.Score));
             }
@@ -175,6 +178,11 @@ namespace Coordinator
         private IActorRef getChildActor<TActor>(Object key, Expression<Func<TActor>> agentFactory)
             where TActor : ActorBase
         {
+            if (key == null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+
             IActorRef child;
 
             if (_agentCache.TryGetValue(key, out child))
@@ -182,13 +190,8 @@ namespace Coordinator
                 return child;
             }
 
-            child = Context.ActorOf(Props.Create(agentFactory));
-            //.WithRouter(new RoundRobinPool(1, new DefaultResizer(0, 10))));
-
-            if (key != null)
-            {
-                _agentCache.TryAdd(key, child);
-            }
+            child = Context.ActorOf(Props.Create(agentFactory).WithRouter(new RoundRobinPool(1, new DefaultResizer(1, 10))));
+            _agentCache.TryAdd(key, child);
 
             return child;
         }
