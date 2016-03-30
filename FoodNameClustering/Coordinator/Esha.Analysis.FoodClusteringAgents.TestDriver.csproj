@@ -44,6 +44,10 @@
       <HintPath>..\packages\AngleSharp.0.9.5\lib\net45\AngleSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Esha.Analysis.FoodClusteringAgents, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Esha.Analysis.FoodClusteringAgents.1.0.2.0\lib\net461\Esha.Analysis.FoodClusteringAgents.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LemmaSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LemmaSharp.1.0.0.0\lib\net20\LemmaSharp.dll</HintPath>
@@ -80,12 +84,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FoodClusteringAgents\Esha.Analysis.FoodClusteringAgents.csproj">
-      <Project>{3a0f1dbd-7e9d-473b-8d3c-e76a24bc8ed0}</Project>
-      <Name>Esha.Analysis.FoodClusteringAgents</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
