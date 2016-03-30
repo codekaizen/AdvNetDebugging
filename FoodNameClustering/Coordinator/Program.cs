@@ -31,7 +31,8 @@ namespace Esha.Analysis.FoodClusteringAgents.TestDriver
                 var searchEngine = new AbstractSearchEngine(new BingSearchEngineImpl());
 
                 var foodName = "barbecue sauce, smoky";
-                coordinator.Tell(new FoodSearchRequestMessage(searchEngine.CreateQuery(foodName), foodName, TimeSpan.FromMinutes(2)));
+                var request = new FoodSearchRequestMessage(searchEngine.CreateQuery(foodName), foodName, TimeSpan.FromMinutes(2));
+                coordinator.Tell(request);
 
                 Console.ReadLine();
             }
