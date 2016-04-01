@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Akka.Actor;
 
 namespace Esha.Analysis.FoodClusteringAgents
@@ -14,7 +15,8 @@ namespace Esha.Analysis.FoodClusteringAgents
             {
                 try
                 {
-                    var documents = await _parserImpl.ParseResultsAsync(r.SearchResults);
+                    var cts = new CancellationTokenSource(TimeSpan.FromMinutes(1));
+                    var documents = await _parserImpl.ParseResultsAsync(r.SearchResults, cts.Token);
                     Sender.Tell(new SearchResultsParseResultMessage(r, documents));
                 }
                 catch (Exception exp)

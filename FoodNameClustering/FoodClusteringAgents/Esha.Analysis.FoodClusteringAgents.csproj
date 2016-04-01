@@ -110,6 +110,7 @@
     <Compile Include="StoreMetricsFailedMessage.cs" />
     <Compile Include="StoreMetricsRequestMessage.cs" />
     <Compile Include="StoreMetricsResultMessage.cs" />
+    <Compile Include="UnsupportedDocumentContentTypeException.cs" />
     <Compile Include="VectorBase.cs" />
   </ItemGroup>
   <ItemGroup>
