@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using Akka.Actor;
@@ -13,7 +14,14 @@ namespace Esha.Analysis.FoodClusteringAgents
             {
                 try
                 {
-                    using (var connection = new SqlConnection(@"Data Source=(localdb)\v11.0;Initial Catalog=FoodClustering;Integrated Security=SSPI"))
+                    var connectionString = ConfigurationManager.ConnectionStrings["FoodClustering"]?.ConnectionString;
+
+                    if (connectionString == null)
+                    {
+                        throw new ConfigurationErrorsException("Missing connection string named 'FoodClustering'.");
+                    }
+
+                    using (var connection = new SqlConnection(connectionString))
                     using (var cmd = connection.CreateCommand())
                     {
                         await connection.OpenAsync();

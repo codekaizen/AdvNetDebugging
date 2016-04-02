@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 using Akka.Actor;
 using Akka.Routing;
+using DbUp;
 
 namespace Esha.Analysis.FoodClusteringAgents
 {
@@ -13,9 +16,40 @@ namespace Esha.Analysis.FoodClusteringAgents
     {
         private readonly ConcurrentDictionary<Object, IActorRef> _agentCache = new ConcurrentDictionary<Object, IActorRef>();
         private readonly ConcurrentDictionary<Tuple<FoodNameTerms, Uri>, DocumentScore> _sourceScores = new ConcurrentDictionary<Tuple<FoodNameTerms, Uri>, DocumentScore>();
-        private IReadOnlyCollection<String> _foodNames = new [] { "barbecue sauce, smoky", "barbecue sauce, mesquite", "chilli sauce", "ice cream, mint, chocolate, cookie" };
+        private readonly IReadOnlyCollection<String> _foodNames = new [] { "barbecue sauce, smoky", "barbecue sauce, mesquite", "chilli sauce", "ice cream, mint, chocolate, cookie" };
 
         public FoodNameClusteringCoordinator()
+        {
+            initSchema();
+            setupReceivers();
+        }
+
+        private void initSchema()
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["FoodClustering"]?.ConnectionString;
+
+            if (connectionString == null)
+            {
+                throw new ConfigurationErrorsException("Missing connection string named 'FoodClustering'.");
+            }
+
+            var upgrader =
+                DeployChanges.To
+                    .SqlDatabase(connectionString)
+                    .WithExecutionTimeout(TimeSpan.FromMinutes(2))
+                    .WithScriptsEmbeddedInAssembly(Assembly.GetExecutingAssembly())
+                    .LogToConsole()
+                    .Build();
+
+            var result = upgrader.PerformUpgrade();
+
+            if (!result.Successful)
+            {
+                throw result.Error;
+            }
+        }
+
+        private void setupReceivers()
         {
             Receive<FoodSearchRequestMessage>(r => handle(r));
             Receive<FoodSearchResultMessage>(r => handle(r));
