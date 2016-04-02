@@ -37,35 +37,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Akka, Version=1.0.6.16, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Akka.1.0.6\lib\net45\Akka.dll</HintPath>
+      <HintPath>packages\Akka.1.0.6\lib\net45\Akka.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AngleSharp, Version=0.9.5.41771, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
-      <HintPath>..\packages\AngleSharp.0.9.5\lib\net45\AngleSharp.dll</HintPath>
+    <Reference Include="DbUp, Version=3.3.2.0, Culture=neutral, PublicKeyToken=4b419c53bdfd4cbf, processorArchitecture=MSIL">
+      <HintPath>packages\dbup.3.3.2\lib\net35\DbUp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Esha.Analysis.FoodClusteringAgents, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Esha.Analysis.FoodClusteringAgents.1.0.2.0\lib\net461\Esha.Analysis.FoodClusteringAgents.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Esha.Analysis.FoodClusteringAgents">
+      <HintPath>..\packages\Esha.Analysis.FoodClusteringAgents.1.0.10.0\lib\net461\Esha.Analysis.FoodClusteringAgents.dll</HintPath>
     </Reference>
     <Reference Include="LemmaSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\LemmaSharp.1.0.0.0\lib\net20\LemmaSharp.dll</HintPath>
     </Reference>
-    <Reference Include="LemmaSharp.Prebuilt, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LemmaSharp.Prebuilt.1.0.0.0\lib\net20\LemmaSharp.Prebuilt.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LemmaSharp.Prebuilt.Compact, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LemmaSharp.Prebuilt.Compact.1.0.0.0\lib\net20\LemmaSharp.Prebuilt.Compact.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Lzma#, Version=4.12.3884.11200, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LemmaSharp.1.0.0.0\lib\net20\Lzma#.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
