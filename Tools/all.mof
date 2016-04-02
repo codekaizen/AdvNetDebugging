@@ -1,0 +1,2457 @@
+#pragma autorecover
+#pragma classflags("forceupdate")
+#pragma namespace ("\\\\.\\Root\\WMI")
+
+/////////////////////////////////////////////////////////////////////////////
+// bid2ETW implementation dll msdadiag is the first
+// others follow binary file name alphabet order
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSDADIAG.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  MSDADIAG.ETW
+
+[
+ dynamic: ToInstance,
+ Description("MSDADIAG.ETW"),
+ Guid("{8B98D3F2-3CC6-0B9C-6651-9649CCE5C752}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDADIAG_ETW : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDADIAG.ETW"),
+ Guid("{8B98D3F3-3CC6-0B9C-6651-9649CCE5C752}"),
+ DisplayName("msdadiag"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDADIAG_ETW_Trace : Bid2Etw_MSDADIAG_ETW
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDADIAG.ETW formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDADIAG_ETW_Trace_TextA : Bid2Etw_MSDADIAG_ETW_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDADIAG.ETW formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDADIAG_ETW_Trace_TextW : Bid2Etw_MSDADIAG_ETW_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// BCP.exe
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  BCP.1
+
+[
+ dynamic: ToInstance,
+ Description("BCP.1"),
+ Guid("{24722B88-DF97-4FF6-E395-DB533AC42A1E}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_BCP_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("BCP.1"),
+ Guid("{24722B89-DF97-4FF6-E395-DB533AC42A1E}"),
+ DisplayName("BCP"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_BCP_1_Trace : Bid2Etw_BCP_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("BCP.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_BCP_1_Trace_TextA : Bid2Etw_BCP_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("BCP.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_BCP_1_Trace_TextW : Bid2Etw_BCP_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// DBNETLIB.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  DBNETLIB.1
+
+[
+ dynamic: ToInstance,
+ Description("DBNETLIB.1"),
+ Guid("{BD568F20-FCCD-B948-054E-DB3421115D61}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_DBNETLIB_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("DBNETLIB.1"),
+ Guid("{BD568F21-FCCD-B948-054E-DB3421115D61}"),
+ DisplayName("DBNETLIB"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_DBNETLIB_1_Trace : Bid2Etw_DBNETLIB_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("DBNETLIB.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_DBNETLIB_1_Trace_TextA : Bid2Etw_DBNETLIB_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("DBNETLIB.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_DBNETLIB_1_Trace_TextW : Bid2Etw_DBNETLIB_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSADCE.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  MSADCE.1
+
+[
+ dynamic: ToInstance,
+ Description("MSADCE.1"),
+ Guid("{76DBA919-5A36-FC80-2CAD-3185532B7CB1}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCE_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADCE.1"),
+ Guid("{76DBA91A-5A36-FC80-2CAD-3185532B7CB1}"),
+ DisplayName("MSADCE"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCE_1_Trace : Bid2Etw_MSADCE_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADCE.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCE_1_Trace_TextA : Bid2Etw_MSADCE_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADCE.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCE_1_Trace_TextW : Bid2Etw_MSADCE_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSADCF.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  MSADCF.1
+
+[
+ dynamic: ToInstance,
+ Description("MSADCF.1"),
+ Guid("{101C0E21-EBBA-A60A-EC3D-58797788928A}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCF_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADCF.1"),
+ Guid("{101C0E22-EBBA-A60A-EC3D-58797788928A}"),
+ DisplayName("MSADCF"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCF_1_Trace : Bid2Etw_MSADCF_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADCF.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCF_1_Trace_TextA : Bid2Etw_MSADCF_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADCF.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCF_1_Trace_TextW : Bid2Etw_MSADCF_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSADCO.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  MSADCO.1
+
+[
+ dynamic: ToInstance,
+ Description("MSADCO.1"),
+ Guid("{5C6CE734-1B3E-705E-C2AB-B272D99AAF8F}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCO_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADCO.1"),
+ Guid("{5C6CE735-1B3E-705E-C2AB-B272D99AAF8F}"),
+ DisplayName("MSADCO"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCO_1_Trace : Bid2Etw_MSADCO_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADCO.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCO_1_Trace_TextA : Bid2Etw_MSADCO_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADCO.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADCO_1_Trace_TextW : Bid2Etw_MSADCO_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSADDS.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  MSADDS.1
+
+[
+ dynamic: ToInstance,
+ Description("MSADDS.1"),
+ Guid("{13CD7F92-5BAA-8C7C-3D72-B69FAC139A46}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADDS_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADDS.1"),
+ Guid("{13CD7F93-5BAA-8C7C-3D72-B69FAC139A46}"),
+ DisplayName("MSADDS"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADDS_1_Trace : Bid2Etw_MSADDS_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADDS.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADDS_1_Trace_TextA : Bid2Etw_MSADDS_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADDS.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADDS_1_Trace_TextW : Bid2Etw_MSADDS_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSADO15.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  ADODB.1
+
+[
+ dynamic: ToInstance,
+ Description("ADODB.1"),
+ Guid("{04C8A86F-3369-12F8-4769-24E484A9E725}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADODB_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("ADODB.1"),
+ Guid("{04C8A870-3369-12F8-4769-24E484A9E725}"),
+ DisplayName("ADODB"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADODB_1_Trace : Bid2Etw_ADODB_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("ADODB.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADODB_1_Trace_TextA : Bid2Etw_ADODB_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("ADODB.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADODB_1_Trace_TextW : Bid2Etw_ADODB_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSADOMD.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  ADOMD.1
+
+[
+ dynamic: ToInstance,
+ Description("ADOMD.1"),
+ Guid("{7EA56435-3F2F-3F63-A829-F0B35B5CAD41}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADOMD_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("ADOMD.1"),
+ Guid("{7EA56436-3F2F-3F63-A829-F0B35B5CAD41}"),
+ DisplayName("ADOMD"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADOMD_1_Trace : Bid2Etw_ADOMD_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("ADOMD.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADOMD_1_Trace_TextA : Bid2Etw_ADOMD_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("ADOMD.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADOMD_1_Trace_TextW : Bid2Etw_ADOMD_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSADOX.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  MSADOX.1
+
+[
+ dynamic: ToInstance,
+ Description("MSADOX.1"),
+ Guid("{6C770D53-0441-AFD4-DCAB-1D89155FECFC}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADOX_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADOX.1"),
+ Guid("{6C770D54-0441-AFD4-DCAB-1D89155FECFC}"),
+ DisplayName("MSADOX"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADOX_1_Trace : Bid2Etw_MSADOX_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADOX.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADOX_1_Trace_TextA : Bid2Etw_MSADOX_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSADOX.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSADOX_1_Trace_TextW : Bid2Etw_MSADOX_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSDAPRST.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  MSDAPRST.1
+
+[
+ dynamic: ToInstance,
+ Description("MSDAPRST.1"),
+ Guid("{64A552E0-6C60-B907-E59C-10F1DFF76B0D}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDAPRST_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDAPRST.1"),
+ Guid("{64A552E1-6C60-B907-E59C-10F1DFF76B0D}"),
+ DisplayName("MSDAPRST"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDAPRST_1_Trace : Bid2Etw_MSDAPRST_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDAPRST.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDAPRST_1_Trace_TextA : Bid2Etw_MSDAPRST_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDAPRST.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDAPRST_1_Trace_TextW : Bid2Etw_MSDAPRST_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSDAREM.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  MSDAREM.1
+
+[
+ dynamic: ToInstance,
+ Description("MSDAREM.1"),
+ Guid("{564F1E24-FC86-28E1-74F8-5CA0D950BEE0}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDAREM_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDAREM.1"),
+ Guid("{564F1E25-FC86-28E1-74F8-5CA0D950BEE0}"),
+ DisplayName("MSDAREM"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDAREM_1_Trace : Bid2Etw_MSDAREM_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDAREM.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDAREM_1_Trace_TextA : Bid2Etw_MSDAREM_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDAREM.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDAREM_1_Trace_TextW : Bid2Etw_MSDAREM_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// MSDASQL.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  MSDASQL.1
+
+[
+ dynamic: ToInstance,
+ Description("MSDASQL.1"),
+ Guid("{B6501BA0-C61A-C4E6-6FA2-A4E7F8C8E7A0}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDASQL_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDASQL.1"),
+ Guid("{B6501BA1-C61A-C4E6-6FA2-A4E7F8C8E7A0}"),
+ DisplayName("MSDASQL"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDASQL_1_Trace : Bid2Etw_MSDASQL_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDASQL.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDASQL_1_Trace_TextA : Bid2Etw_MSDASQL_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("MSDASQL.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_MSDASQL_1_Trace_TextW : Bid2Etw_MSDASQL_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// ODBC32.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  ODBC.1
+
+[
+ dynamic: ToInstance,
+ Description("ODBC.1"),
+ Guid("{F34765F6-A1BE-4B9D-1400-B8A12921F704}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ODBC_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("ODBC.1"),
+ Guid("{F34765F7-A1BE-4B9D-1400-B8A12921F704}"),
+ DisplayName("ODBC"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ODBC_1_Trace : Bid2Etw_ODBC_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("ODBC.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ODBC_1_Trace_TextA : Bid2Etw_ODBC_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("ODBC.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ODBC_1_Trace_TextW : Bid2Etw_ODBC_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// ODBCBCP.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  ODBCBCP.1
+
+[
+ dynamic: ToInstance,
+ Description("ODBCBCP.1"),
+ Guid("{932B59F1-90C2-D8BA-0956-3975C344AE2B}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ODBCBCP_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("ODBCBCP.1"),
+ Guid("{932B59F2-90C2-D8BA-0956-3975C344AE2B}"),
+ DisplayName("ODBCBCP"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ODBCBCP_1_Trace : Bid2Etw_ODBCBCP_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("ODBCBCP.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ODBCBCP_1_Trace_TextA : Bid2Etw_ODBCBCP_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("ODBCBCP.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ODBCBCP_1_Trace_TextW : Bid2Etw_ODBCBCP_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// OLEDB32.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  OLEDB.1
+
+[
+ dynamic: ToInstance,
+ Description("OLEDB.1"),
+ Guid("{0DD082C4-66F2-271F-74BA-2BF1F9F65C66}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_OLEDB_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("OLEDB.1"),
+ Guid("{0DD082C5-66F2-271F-74BA-2BF1F9F65C66}"),
+ DisplayName("OLEDB"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_OLEDB_1_Trace : Bid2Etw_OLEDB_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("OLEDB.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_OLEDB_1_Trace_TextA : Bid2Etw_OLEDB_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("OLEDB.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_OLEDB_1_Trace_TextW : Bid2Etw_OLEDB_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// SQLOLEDB.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  SQLOLEDB.1
+
+[
+ dynamic: ToInstance,
+ Description("SQLOLEDB.1"),
+ Guid("{C5BFFE2E-9D87-D568-A09E-08FC83D0C7C2}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLOLEDB_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLOLEDB.1"),
+ Guid("{C5BFFE2F-9D87-D568-A09E-08FC83D0C7C2}"),
+ DisplayName("SQLOLEDB"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLOLEDB_1_Trace : Bid2Etw_SQLOLEDB_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLOLEDB.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLOLEDB_1_Trace_TextA : Bid2Etw_SQLOLEDB_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLOLEDB.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLOLEDB_1_Trace_TextW : Bid2Etw_SQLOLEDB_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// SQLSRV32.DLL
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  SQLSRV32.1
+
+[
+ dynamic: ToInstance,
+ Description("SQLSRV32.1"),
+ Guid("{4B647745-F438-0A42-F870-5DBD29949C99}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSRV32_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSRV32.1"),
+ Guid("{4B647746-F438-0A42-F870-5DBD29949C99}"),
+ DisplayName("SQLSRV32"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSRV32_1_Trace : Bid2Etw_SQLSRV32_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSRV32.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSRV32_1_Trace_TextA : Bid2Etw_SQLSRV32_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSRV32.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSRV32_1_Trace_TextW : Bid2Etw_SQLSRV32_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// ADO.NET
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  ADONETDIAG.ETW
+
+[
+ dynamic: ToInstance,
+ Description("ADONETDIAG.ETW"),
+ Guid("{7ACDCAC8-8947-F88A-E51A-24018F5129EF}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADONETDIAG_ETW : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("ADONETDIAG.ETW"),
+ Guid("{7ACDCAC9-8947-F88A-E51A-24018F5129EF}"),
+ DisplayName("AdoNetDiag"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADONETDIAG_ETW_Trace : Bid2Etw_ADONETDIAG_ETW
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("ADONETDIAG.ETW formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADONETDIAG_ETW_Trace_TextA : Bid2Etw_ADONETDIAG_ETW_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("ADONETDIAG.ETW formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_ADONETDIAG_ETW_Trace_TextW : Bid2Etw_ADONETDIAG_ETW_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  System.Data.1
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.1"),
+ Guid("{914ABDE2-171E-C600-3348-C514171DE148}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.1"),
+ Guid("{914ABDE3-171E-C600-3348-C514171DE148}"),
+ DisplayName("System.Data"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_1_Trace : Bid2Etw_System_Data_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_1_Trace_TextA : Bid2Etw_System_Data_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_1_Trace_TextW : Bid2Etw_System_Data_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  System.Data.Entity.1
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.Entity.1"),
+ Guid("{A68D8BB7-4F92-9A7A-D50B-CEC0F44C4808}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_Entity_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.Entity.1"),
+ Guid("{A68D8BB8-4F92-9A7A-D50B-CEC0F44C4808}"),
+ DisplayName("System.Data.Entity"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_Entity_1_Trace : Bid2Etw_System_Data_Entity_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.Entity.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_Entity_1_Trace_TextA : Bid2Etw_System_Data_Entity_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.Entity.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_Entity_1_Trace_TextW : Bid2Etw_System_Data_Entity_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  System.Data.SNI.1
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.SNI.1"),
+ Guid("{C9996FA5-C06F-F20C-8A20-69B3BA392315}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_SNI_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.SNI.1"),
+ Guid("{C9996FA6-C06F-F20C-8A20-69B3BA392315}"),
+ DisplayName("System.Data.SNI"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_SNI_1_Trace : Bid2Etw_System_Data_SNI_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.SNI.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_SNI_1_Trace_TextA : Bid2Etw_System_Data_SNI_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.SNI.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_SNI_1_Trace_TextW : Bid2Etw_System_Data_SNI_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  System.Data.OracleClient.1
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.OracleClient.1"),
+ Guid("{DCD90923-4953-20C2-8708-01976FB15287}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_OracleClient_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.OracleClient.1"),
+ Guid("{DCD90924-4953-20C2-8708-01976FB15287}"),
+ DisplayName("System.Data.OracleClient"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_OracleClient_1_Trace : Bid2Etw_System_Data_OracleClient_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.OracleClient.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_OracleClient_1_Trace_TextA : Bid2Etw_System_Data_OracleClient_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("System.Data.OracleClient.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_System_Data_OracleClient_1_Trace_TextW : Bid2Etw_System_Data_OracleClient_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// SQL Server Native Client
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  SQLNCLI.1
+
+[
+ dynamic: ToInstance,
+ Description("SQLNCLI.1"),
+ Guid("{BA798F36-2325-EC5B-ECF8-76958A2AF9B5}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLNCLI_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLNCLI.1"),
+ Guid("{BA798F37-2325-EC5B-ECF8-76958A2AF9B5}"),
+ DisplayName("SQLNCLI"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLNCLI_1_Trace : Bid2Etw_SQLNCLI_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLNCLI.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLNCLI_1_Trace_TextA : Bid2Etw_SQLNCLI_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLNCLI.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLNCLI_1_Trace_TextW : Bid2Etw_SQLNCLI_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+// SQLSERVR.exe
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  SQLSERVER.09
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.09"),
+ Guid("{AB6D5EEB-0132-74AB-C5F5-B23E1644DADA}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_09 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.09"),
+ Guid("{AB6D5EEC-0132-74AB-C5F5-B23E1644DADA}"),
+ DisplayName("SQLSERVER.09"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_09_Trace : Bid2Etw_SQLSERVER_09
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.09 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_09_Trace_TextA : Bid2Etw_SQLSERVER_09_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.09 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_09_Trace_TextW : Bid2Etw_SQLSERVER_09_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+// SQLBrowser.exe
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  SQLBROWSER.1
+
+[
+ dynamic: ToInstance,
+ Description("SQLBROWSER.1"),
+ Guid("{FC9F92E6-D521-9C9A-1D8C-D8980B9978A9}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLBROWSER_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLBROWSER.1"),
+ Guid("{FC9F92E7-D521-9C9A-1D8C-D8980B9978A9}"),
+ DisplayName("SQLBROWSER"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLBROWSER_1_Trace : Bid2Etw_SQLBROWSER_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLBROWSER.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLBROWSER_1_Trace_TextA : Bid2Etw_SQLBROWSER_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLBROWSER.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLBROWSER_1_Trace_TextW : Bid2Etw_SQLBROWSER_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+//  SQLJDBC
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  SQLJDBC_XA.1
+
+[
+ dynamic: ToInstance,
+ Description("SQLJDBC_XA.1"),
+ Guid("{172E580D-9BEF-D154-EABB-83429A6F3718}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLJDBC_XA_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLJDBC_XA.1"),
+ Guid("{172E580E-9BEF-D154-EABB-83429A6F3718}"),
+ DisplayName("SqlJDBC_XA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLJDBC_XA_1_Trace : Bid2Etw_SQLJDBC_XA_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLJDBC_XA.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLJDBC_XA_1_Trace_TextA : Bid2Etw_SQLJDBC_XA_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLJDBC_XA formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLJDBC_XA_1_Trace_TextW : Bid2Etw_SQLJDBC_XA_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  BCP11.1
+
+[
+ dynamic: ToInstance,
+ Description("BCP11.1"),
+ Guid("{A66451FD-40AE-4B96-EE99-AB3E8064B7BE}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_BCP11_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("BCP11.1"),
+ Guid("{A66451FE-40AE-4B96-EE99-AB3E8064B7BE}"),
+ DisplayName("BCP11"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_BCP11_1_Trace : Bid2Etw_BCP11_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("BCP11.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_BCP11_1_Trace_TextA : Bid2Etw_BCP11_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("BCP11.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_BCP11_1_Trace_TextW : Bid2Etw_BCP11_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//  SQLNCLI11.1
+
+[
+ dynamic: ToInstance,
+ Description("SQLNCLI11.1"),
+ Guid("{2DA81B52-908E-7DB6-EF81-76856BB47C4F}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLNCLI11_1 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLNCLI11.1"),
+ Guid("{2DA81B53-908E-7DB6-EF81-76856BB47C4F}"),
+ DisplayName("SQLNCLI11.1"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLNCLI11_1_Trace : Bid2Etw_SQLNCLI11_1
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLNCLI11.1 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLNCLI11_1_Trace_TextA : Bid2Etw_SQLNCLI11_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLNCLI11.1 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLNCLI11_1_Trace_TextW : Bid2Etw_SQLNCLI11_1_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+//  SQLSERVER.10
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.10"),
+ Guid("{48D59D84-105B-00FA-6B49-03462F696737}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_10 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.10"),
+ Guid("{48D59D85-105B-00FA-6B49-03462F696737}"),
+ DisplayName("SQLSERVER.10"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_10_Trace : Bid2Etw_SQLSERVER_10
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.10 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_10_Trace_TextA : Bid2Etw_SQLSERVER_10_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.10 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_10_Trace_TextW : Bid2Etw_SQLSERVER_10_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+//  SQLSERVER.11
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.11"),
+ Guid("{B2A28C42-A7C2-1563-97CC-3BE49FDA19F9}"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_11 : EventTrace
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.11"),
+ Guid("{B2A28C43-A7C2-1563-97CC-3BE49FDA19F9}"),
+ DisplayName("SQLSERVER.11"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_11_Trace : Bid2Etw_SQLSERVER_11
+{
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.11 formatted output (A)"),
+ EventType(17),
+ EventTypeName("TextA"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_11_Trace_TextA : Bid2Etw_SQLSERVER_11_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringA"),
+     extension("RString"),
+     read
+    ]
+    object msgStr;
+};
+
+[
+ dynamic: ToInstance,
+ Description("SQLSERVER.11 formatted output (W)"),
+ EventType(18),
+ EventTypeName("TextW"),
+ locale("MS\\0x409")
+]
+class Bid2Etw_SQLSERVER_11_Trace_TextW : Bid2Etw_SQLSERVER_11_Trace
+{
+    [
+     WmiDataId(1),
+     Description("Module ID"),
+     read
+    ]
+    uint32 ModID;
+
+    [
+     WmiDataId(2),
+     Description("Text StringW"),
+     extension("RWString"),
+     read
+    ]
+    object msgStr;
+};
