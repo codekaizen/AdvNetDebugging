@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="BingSearchResultsParserTests.cs" />
     <Compile Include="DocumentRetrievalActorTests.cs" />
+    <Compile Include="DocumentScoringActorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
