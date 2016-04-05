@@ -28,7 +28,7 @@ namespace Esha.Analysis.FoodClusteringAgents.Tests
             var searchUri = new Uri("http://google.com");
             var foodName = "food stuff";
             sut.Tell(new RetrieveDocumentRequestMessage(documentUri, TimeSpan.FromMinutes(2), searchUri, foodName));
-            var result = ExpectMsg<RetrieveDocumentResultMessage>();
+            var result = ExpectMsg<RetrieveDocumentResultMessage>(duration: TimeSpan.FromMinutes(2));
             Assert.Equal(documentUri, result.SearchResultDoc.DocumentUri);
             Assert.Equal(searchUri, result.SearchResultDoc.SearchUri);
             Assert.Equal(foodName, result.SearchResultDoc.OriginatingFoodName);
