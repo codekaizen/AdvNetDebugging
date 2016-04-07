@@ -48,9 +48,9 @@
       <HintPath>packages\dbup.3.3.2\lib\net35\DbUp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Esha.Analysis.FoodClusteringAgents, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Esha.Analysis.FoodClusteringAgents, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Esha.Analysis.FoodClusteringAgents.1.0.10.0\lib\net461\Esha.Analysis.FoodClusteringAgents.dll</HintPath>
+      <HintPath>packages\Esha.Analysis.FoodClusteringAgents.1.0.12.0\lib\net461\Esha.Analysis.FoodClusteringAgents.dll</HintPath>
     </Reference>
     <Reference Include="LemmaSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
