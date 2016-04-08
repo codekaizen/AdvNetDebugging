@@ -126,6 +126,28 @@ function Disable-FusionLog
     Write-Host "Fusion log disabled"  
 }
 
+<#
+.SYNOPSIS
+Enables the image execution flags to start an executable in a debugger.
+
+.DESCRIPTION
+Sets the global flags (GFlags) in HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options for the given exe name to start the process in 
+a debugger specified by the Debugger parameter.
+
+.EXAMPLE 
+Enable-StartWithDebugger -ExeName MyProgram.exe -Bitness 32 -Debugger windbg -SdkVersion 10 -IncludeLoaderSnaps
+Sets the MyProgram.exe to start in x86 WinDbg from the Windows 10 SDK
+
+.NOTES
+Need to run elevated.
+Disable with Disable-StartWithDebugger. If IncludeLoaderSnaps is specified, it can place a large burden on the system.
+
+.ROLE
+Diagnostics
+
+.LINK 
+Enable-StartWithDebugger
+#>
 function Enable-StartWithDebugger
 {
     [CmdletBinding()]
