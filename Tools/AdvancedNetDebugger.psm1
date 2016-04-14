@@ -278,3 +278,175 @@ function Start-EtwDataLogging
         [string]$ExeName
     )
 }
+
+
+<#
+.SYNOPSIS
+Creates a new hang dump
+
+.ROLE
+Diagnostics
+#>
+function New-HangDump {
+    [CmdletBinding()]
+    param (
+    [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
+    [Products]$Product = [Products]::None,
+    [Parameter(Mandatory = $false, Position = 1, ValueFromPipeline = $false)]
+    [ValidateRange(1, 9999999)]
+    [int]$Pid,
+    [Parameter(Mandatory = $false, Position = 2, ValueFromPipeline = $false)]
+    [ValidateRange(1, 1000)]
+    [int]$DumpCount = 1,
+    [string]$DumpPath = $null
+    )
+
+    New-ProcessDump -Product $Product -Pid $Pid -DumpCount $DumpCount -IsHangMode -DumpPath $DumpPath
+}
+
+<#
+.SYNOPSIS
+Creates a new crash dump
+
+.PARAMETER Product
+The product to monitor and create a crash dump for when it fails.
+
+.PARAMETER Pid
+The process id of an already running instance of the product.
+
+.PARAMETER DumpCount
+The maximum number of crash dump files to create. Defaults to 1.
+
+.PARAMETER ExceptionFilter
+A text string filter on the name of the exception type to filter on when deciding to capture a crash dump.
+
+.PARAMETER IncludeNonFatalExceptions
+If included, all exceptions which match the filter (if any) cause a crash dump, even ones which are handled internally in the program.
+
+.PARAMETER DumpPath
+The path to output the dumpfiles to.
+
+.EXAMPLE 
+New-CrashDump -Product GenesisSQL
+Creates a single dump file in %TEMP% for GenesisSQL when it crashes for any reason. If GenesisSQL is not started, it waits for it to start before monitoring.
+
+.EXAMPLE 
+New-CrashDump -Product GenesisSQL -Pid 1234
+Creates a single dump file in %TEMP% for an already running GenesisSQL instance with process id 1234 when it crashes for any reason.
+
+.EXAMPLE 
+New-CrashDump -Product GenesisSQL -DumpCount 100 -IncludeNonFatalExceptions -DumpPath D:\crashdumps
+Creates up to 100 dump files in D:\crashdumps for GenesisSQL instance when any exception is thrown, even if the exception is non-fatal.
+
+.ROLE
+Diagnostics
+#>
+function New-CrashDump {
+    [CmdletBinding()]
+    param (
+    [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
+    [Products]$Product = [Products]::None,
+    [Parameter(Mandatory = $false, Position = 1, ValueFromPipeline = $false)]
+    [ValidateRange(1, 9999999)]
+    [int]$Pid,
+    [Parameter(Mandatory = $false, Position = 2, ValueFromPipeline = $false)]
+    [ValidateRange(1, 1000)]
+    [int]$DumpCount = 1,
+    [Parameter(Mandatory = $false, Position = 3, ValueFromPipeline = $false)]
+    [string]$ExceptionFilter = "*",
+    [switch]$IncludeNonFatalExceptions,
+    [string]$DumpPath = $null
+    )
+
+    New-ProcessDump -Product $Product -Pid $Pid -DumpCount $DumpCount -ExceptionFilter $ExceptionFilter -DumpPath $DumpPath -IncludeNonFatalExceptions:$IncludeNonFatalExceptions
+}
+
+<#
+.SYNOPSIS
+Creates a new process memory dump.
+
+.ROLE
+Diagnostics
+#>
+function New-ProcessDump {
+    [CmdletBinding()]
+    param (
+    [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
+    [Products]$Product = [Products]::None,
+    [Parameter(Mandatory = $false, Position = 1, ValueFromPipeline = $false)]
+    [ValidateRange(1, 9999999)]
+    [int]$Pid,
+    [Parameter(Mandatory = $false, Position = 2, ValueFromPipeline = $false)]
+    [ValidateRange(1, 1000)]
+    [int]$DumpCount = 1,
+    [switch]$IsHangMode,
+    [string]$ExceptionFilter = "*",
+    [switch]$IncludeNonFatalExceptions,
+    [string]$DumpPath = $null
+    )
+
+    # Setup dump path
+    if (!$DumpPath)
+    {
+        $DumpPath = $env:Temp
+    }
+       
+    if (-not (Test-Path $DumpPath))
+    {
+        Write-Error "Path $DumpPath does not exist."
+        return
+    }
+    
+    $dumpFile = Join-Path $DumpPath "${product}_$([System.DateTimeOffset]::Now.ToString('yyyy_MM_dd___HH_mm_sszz')).dmp"
+
+    # Setup run mode
+    $runArgs = ""
+
+    if ($IsHangMode)
+    {
+        $runArgs = "-h -ma -e"
+    }
+    else
+    {
+        $dumpOnException = '-e'
+
+        if ($IncludeNonFatalExceptions)
+        {
+            Write-Verbose "Dumping on first-chance exceptions enabled"
+            $dumpOnException = '-e 1'
+        }
+
+        if ($ExceptionFilter)
+        {
+            $exceptionFilterArg = "-f `"$ExceptionFilter`""
+        }
+
+        $runArgs = "-ma -t -g $dumpOnException $exceptionFilterArg"
+    }
+
+    # Setup process target
+    if (!$pid)
+    {
+        Write-Verbose "PID not specified; looking up via product exe name"
+        $process = (Find-ProductProcess $Product)
+        
+        if ($process)
+        {
+            $pid = $process.Id
+        }
+    }
+        
+    if ($pid)
+    {
+        $args = "-accepteula $runArgs -n $dumpCount $pid $dumpFile"
+    }
+    else
+    {
+        $procName = $global:productToExeNames[$Product]
+        $args = "-accepteula $runArgs -n $dumpCount -w `"$procName`" $dumpFile"
+    }
+
+    # Kick off procdump
+    Write-Verbose "Calling procdump.exe with arguments: $args"
+    Start-Process (Get-Command 'Procdump').Definition -ArgumentList $args -Wait -NoNewWindow
+}
